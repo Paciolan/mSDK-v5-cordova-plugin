@@ -1,0 +1,48 @@
+android {
+    compileSdkVersion 34
+    defaultConfig {
+        // applicationId "com.example.myapplication"
+        minSdkVersion 26
+        targetSdkVersion 34
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a", "x86", "x86_64", "arm64-v8a"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.1.4'
+        // Step I: add this line
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+          url "http://paciolan.mobilesdk.s3.amazonaws.com/releases"
+          allowInsecureProtocol = true
+        }
+    }
+}
+
+dependencies {
+    implementation 'com.paciolan:mobilesdk:99.0.4'
+}

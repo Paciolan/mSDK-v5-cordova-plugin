@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<plugin id="paciolansdk" version="5.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0">
+    <name>PaciolanSDK</name>
+    <description>
+        A cordova plugin to use the Paciolan ticketing SDK
+    </description>
+    <dependency id="es6-promise-plugin" version="4.2.2"></dependency>
+    <dependency id="cordova-plugin-cocoapod-support"/>
+    <engines>
+        <engine name="cordova" version=">=12.0.0" />
+    </engines>
+    <js-module src="www/plugin.js" name="PaciolanSDK">
+        <!-- This is the window variable name you want, like window.MyCordovaPlugin -->
+        <clobbers target="cordova.plugins.PaciolanSDK" />
+    </js-module>
+    <!-- android -->
+    <platform name="android">
+        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="PaciolanSDK">
+                <param name="android-package" value="com.paciolan.PaciolanSDK" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/com/paciolan/PaciolanSDK.java" target-dir="src/com/paciolan" />
+    </platform>
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="PaciolanSDK">
+                <param name="ios-package" value="CDVPaciolanSDK" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVPaciolanSDK.h" />
+        <source-file src="src/ios/CDVPaciolanSDK.m" />
+        <header-file src="src/ios/InstantiateViewControllerError.h" />
+        <source-file src="src/ios/InstantiateViewControllerError.m" />
+        <pods-config ios-min-version="13.4">
+          <!-- This should be the updated sdk-specs github -->
+            <source url="https://github.com/Paciolan/mSDK-v5-specs.git" />
+            <source url="https://github.com/CocoaPods/Specs.git"/>
+        </pods-config>
+        <pod name="PaciolanSDK" />
+    </platform>
+</plugin>
