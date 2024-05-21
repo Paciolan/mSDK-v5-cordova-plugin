@@ -62,4 +62,11 @@ PaciolanSDKViewController *viewController = nil;
     });
 }
 
+- (void)appLaunched {
+       dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Call the appLaunched method without providing the response parameter
+        [[PaciolanSDKViewController alloc] appLaunched:nil resolver:nil rejecter:nil];
+    });
+}
+
 @end

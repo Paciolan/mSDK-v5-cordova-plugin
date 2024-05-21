@@ -44,5 +44,5 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.paciolan:mobilesdk:5.100.0'
+    implementation 'com.paciolan:mobilesdk:5.102.0'
 }
