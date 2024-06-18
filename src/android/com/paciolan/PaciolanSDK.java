@@ -18,8 +18,6 @@ import java.util.HashMap;
 import com.paciolan.mobileSDK.MobileSDK;
 import com.paciolan.mobileSDK.TokenCallback;
 import com.paciolan.mobileSDK.MobileSDKActivity;
-import com.paciolan.mobileSDK.PaciolanReactPackage;
-import com.paciolan.mobileSDK.PaciolanSDKAndroidUtils;
 
 public class PaciolanSDK extends CordovaPlugin implements TokenCallback {
 
@@ -122,21 +120,4 @@ public class PaciolanSDK extends CordovaPlugin implements TokenCallback {
     return error;
   }
 
-  public static void appLaunched() {
-      PaciolanSDKAndroidUtils module = PaciolanReactPackage.getMReactContext()
-        .getNativeModule(PaciolanSDKAndroidUtils.class);
-      if (module != null) {
-          module.emitEvent("AppLaunchedEvent", "");
-      }
-  }
-
-
-  public static void navAwayFromPac(callback: UserChoiceCallback) {
-    PaciolanSDKAndroidUtils module = PaciolanReactPackage.getMReactContext()
-      .getNativeModule(PaciolanSDKAndroidUtils.class);
-      if (module != null) {
-          module.emitEvent("navAwayEvent", "message from canNavAway on Tab Pressed")
-      }
-    this.userChoiceCallback = callback
-  }
 }
